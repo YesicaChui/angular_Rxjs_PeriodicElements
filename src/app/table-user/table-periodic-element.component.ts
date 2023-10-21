@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PeriodicElement } from './model';
 import { TablePeriodicElementService } from './table-periodic-element.service';
-import { Observable } from 'rxjs';
+import { Observable, filter, map, of } from 'rxjs';
 
 
 
@@ -18,7 +18,23 @@ export class TablePeriodicElementComponent {
     // this.periodicElements=this.periodicElementsService.getPeriodicElements()
     this.periodicElements = this.periodicElementsService.getPeriodicElements()
     this.periodicElementsService.loadPeriodicElements()
+    of(1, 2, 3, 4, 5)
+      .pipe(
+        filter(v => v < 3)
+      )
+      .subscribe({
+        next: (v) => console.log(v)
+      })
 
+     this.periodicElements
+      .pipe(        
+        map(elements => elements.filter(element => element.weight <10))
+      )
+      .subscribe(filtered => {
+        // Ahora filtered es un PeriodicElement
+        console.log(filtered)
+        this.periodicElements=of(filtered)
+      })
   }
 
 }
