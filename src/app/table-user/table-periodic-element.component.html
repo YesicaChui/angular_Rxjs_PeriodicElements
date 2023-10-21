@@ -1,4 +1,9 @@
-<p>table-user works!</p>
+<div class="titulo">
+  <p>Tabla de elementos</p>
+  <button (click)="ver=!ver">Ver/Ocultar Hora</button>
+  <div *ngIf="ver"><app-reloj></app-reloj></div>
+</div>
+  
 <table mat-table [dataSource]="(periodicElements| async)||[]" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.

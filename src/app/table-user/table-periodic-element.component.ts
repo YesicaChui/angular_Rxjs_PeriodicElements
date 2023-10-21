@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { PeriodicElement } from './model';
 import { TablePeriodicElementService } from './table-periodic-element.service';
-import { Observable, filter, map, of } from 'rxjs';
+import { Observable, Subscription, filter, map, of } from 'rxjs';
 
 
 
@@ -11,6 +11,10 @@ import { Observable, filter, map, of } from 'rxjs';
   styleUrls: ['./table-periodic-element.component.scss']
 })
 export class TablePeriodicElementComponent {
+
+  ver=true
+
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   // dataSource = ELEMENT_DATA;
   periodicElements: Observable<PeriodicElement[]>
@@ -35,6 +39,11 @@ export class TablePeriodicElementComponent {
         console.log(filtered)
         this.periodicElements=of(filtered)
       })
+
+
   }
+
+
+
 
 }
